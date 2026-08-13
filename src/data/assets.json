@@ -1,0 +1,13 @@
+{
+  "_comment": "Registry of assets the Watcher can check. Fill in real addresses as they're deployed/found on X Layer testnet (Phase 0). Any field left null means that tool will honestly report 'not configured' rather than fabricate a number.",
+  "assets": {
+    "EXAMPLE": {
+      "displayName": "Example Token (placeholder — replace with a real X Layer testnet asset)",
+      "tokenAddress": null,
+      "pairAddress": null,
+      "porFeedAddress": null,
+      "priceFeedAddress": null,
+      "launchDate": null
+    }
+  }
+}

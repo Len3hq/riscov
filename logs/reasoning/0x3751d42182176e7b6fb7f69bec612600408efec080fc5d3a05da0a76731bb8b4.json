@@ -1,0 +1,12 @@
+{
+  "asset": "FROG",
+  "rating": "Red",
+  "reasoning": "FROG has experienced a drastic 80% liquidity drop in a brief period, consistent with the Coordinated Liquidity Withdrawal pattern. This change is alarming given the token's maturity at 210 days. Additionally, the team’s silence over the past 48 hours adds to the concern, indicating potential dysfunction or an exit.",
+  "evidenceCited": [
+    "80% liquidity drop in 24 hours",
+    "token age 210 days",
+    "team silence for 48 hours",
+    "matches the Coordinated Liquidity Withdrawal pattern"
+  ],
+  "timestamp": "2026-08-12T22:58:34.666Z"
+}

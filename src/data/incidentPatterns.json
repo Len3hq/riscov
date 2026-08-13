@@ -1,0 +1,71 @@
+{
+  "_comment": "A small curated reference set of well-known on-chain risk patterns. This is static reference material, not a live feed — the Watcher agent is the one that decides whether current evidence matches any of these, and explains the match in its own words. Nothing here maps directly to a rating.",
+  "patterns": [
+    {
+      "id": "coordinated-liquidity-withdrawal",
+      "name": "Coordinated liquidity withdrawal",
+      "description": "A large share of pool liquidity (commonly 50-100%) is removed in a single transaction or within a short window, well after the token's early/volatile period has passed. Distinct from normal early-stage liquidity thinness because it represents a sudden reversal in an asset that had established trading history.",
+      "typicalSignals": [
+        "liquidity drop >50% within 24 hours",
+        "token age > 30 days at time of drop",
+        "LP tokens concentrated in one or few wallets before the drop"
+      ],
+      "historicalExamples": ["Squid Game token (2021)", "AnubisDAO (2021)"]
+    },
+    {
+      "id": "mint-function-abuse",
+      "name": "Hidden or abused mint function",
+      "description": "Contract retains an unrestricted or owner-only mint function that gets called post-launch to inflate supply, diluting holders or enabling a dump.",
+      "typicalSignals": [
+        "unverified or unaudited contract",
+        "sudden large supply increase not disclosed in advance",
+        "mint event from an EOA shortly before a price/liquidity drop"
+      ],
+      "historicalExamples": ["Various unaudited fork tokens, recurring pattern since 2020"]
+    },
+    {
+      "id": "fake-ownership-renounce",
+      "name": "Fake or partial ownership renounce",
+      "description": "Project claims ownership was renounced (marketed as a safety signal) but retains a privileged role via a proxy admin, secondary owner-like address, or unrenounced minter/pauser role.",
+      "typicalSignals": [
+        "owner() returns zero address but a separate privileged role still exists",
+        "upgradeable proxy pattern with an active proxy admin",
+        "marketing emphasizes 'renounced' without third-party verification"
+      ],
+      "historicalExamples": []
+    },
+    {
+      "id": "oracle-price-manipulation",
+      "name": "Oracle / price manipulation via low liquidity",
+      "description": "An attacker manipulates a thin, single-source price feed (often a low-liquidity DEX pool used as an oracle) to distort collateral or reward calculations, typically via flash loan.",
+      "typicalSignals": [
+        "asset price used as an oracle input has thin liquidity",
+        "large, brief price spike reverting shortly after",
+        "single-block or single-transaction price excursion"
+      ],
+      "historicalExamples": ["Mango Markets (2022)", "Numerous smaller DeFi exploits 2021-2024"]
+    },
+    {
+      "id": "reserve-shortfall",
+      "name": "Stablecoin/RWA reserve shortfall",
+      "description": "A stablecoin or RWA-backed token's attested reserves fall below its circulating supply, or Proof-of-Reserve data goes stale/unavailable during a period of stress.",
+      "typicalSignals": [
+        "Proof of Reserve value < circulating supply",
+        "PoR feed not updated for an unusually long time",
+        "redemption delays or withdrawal limits announced"
+      ],
+      "historicalExamples": ["TerraUSD / UST depeg (2022)", "Various smaller wrapped-asset depegs"]
+    },
+    {
+      "id": "team-activity-cliff",
+      "name": "Team activity cliff",
+      "description": "Public team/dev activity (commits, governance posts, social presence) drops sharply and stays silent, often preceding abandonment or an exit.",
+      "typicalSignals": [
+        "no public commits/posts for an extended period after a previously active cadence",
+        "team wallets move funds shortly before or during the silence",
+        "support/community channels going unanswered"
+      ],
+      "historicalExamples": []
+    }
+  ]
+}
