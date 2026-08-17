@@ -1,7 +1,7 @@
 node_modules/
 dist/
 .env
-logs/*.json
+logs/**/*.json
 !logs/.gitkeep
 artifacts/
 cache/

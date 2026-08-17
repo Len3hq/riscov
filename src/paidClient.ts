@@ -1,8 +1,7 @@
 /**
  * Stands in for "another agent" discovering Riscov's paid endpoint and
- * actually paying for a call (Phase 4 exit condition, second half). Pays in
- * testnet USDC on Base Sepolia via the free community facilitator — no OKX
- * account needed to prove the mechanics work.
+ * actually paying for a call (Phase 4 exit condition, second half). Pays
+ * through X Layer — no alternate chain, per project policy.
  */
 import { wrapFetchWithPaymentFromConfig, decodePaymentResponseHeader } from "@x402/fetch";
 import { ExactEvmScheme } from "@x402/evm";
@@ -11,9 +10,14 @@ import { privateKeyToAccount } from "viem/accounts";
 async function main() {
   const asset = process.argv[2] || "EXAMPLE";
   const serverUrl = process.env.PAID_SERVER_URL || "http://localhost:4021/check-risk";
-  const network = (process.env.X402_NETWORK || "eip155:84532") as `${string}:${string}`;
+  const network = process.env.X402_NETWORK as `${string}:${string}` | undefined;
   const privateKey = process.env.TEST_AGENT_PRIVATE_KEY;
 
+  if (!network) {
+    throw new Error(
+      "Missing X402_NETWORK — set it to X Layer's CAIP-2 id (e.g. eip155:196 mainnet or eip155:1952 testnet)."
+    );
+  }
   if (!privateKey) {
     throw new Error("Missing TEST_AGENT_PRIVATE_KEY — the throwaway agent's paying wallet.");
   }
