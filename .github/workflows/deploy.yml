@@ -36,6 +36,9 @@ jobs:
       # ourselves first, then hand Vercel the already-built output via
       # --prebuilt, which skips its remote build step entirely. Verified
       # against a from-scratch clone before relying on this in CI.
+      - name: Install dependencies
+        run: npm install
+
       - name: Build
         run: npm run vercel-build
 
