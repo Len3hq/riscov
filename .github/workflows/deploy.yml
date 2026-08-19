@@ -1,0 +1,27 @@
+name: Deploy to Vercel
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: vercel-production-deploy
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+
+      # Vercel's own git-integration auto-deploys are unreliable for this
+      # project — its build cache is silently reused (skipping the actual
+      # build) on pushes that only touch web/src/**, producing a broken
+      # deployment. `--force` bypasses that cache and always runs a real
+      # build; this is the only path that has worked reliably.
+      - name: Deploy to Vercel (forced, no cache)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: team_6M6jo8FDcgWsmCbACZQ1YWdB
+          VERCEL_PROJECT_ID: prj_CZeKkxKOFYIRfPy5Ze5lbzJRO8PO
+        run: npx vercel@latest deploy --prod --force --token="$VERCEL_TOKEN" --yes
