@@ -1,0 +1,127 @@
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-8) 0 var(--space-6);
+  max-width: 760px;
+}
+
+.eyebrow {
+  color: var(--accent);
+}
+
+.title {
+  margin: 0;
+}
+
+.lede {
+  max-width: 62ch;
+}
+
+.heroActions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-top: var(--space-7);
+  border-top: var(--border-w) solid var(--border);
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 620px;
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .grid3,
+  .grid4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid3,
+  .grid4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pieceCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pieceIndex {
+  color: var(--text-dim);
+}
+
+.pieceTitle {
+  margin: 0;
+}
+
+.ratingRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.ratingItem {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+}
+
+.ratingItem p {
+  margin: 0;
+}
+
+.useCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: inherit;
+}
+
+.useCard:hover {
+  border-color: var(--border-strong);
+  background: var(--surface-2);
+}
+
+.useTitle {
+  color: var(--text);
+  margin: 0;
+}
+
+.useLink {
+  color: var(--accent);
+  margin-top: auto;
+}
+
+.ctaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}

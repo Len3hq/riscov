@@ -8,6 +8,7 @@ import { FindingItem } from '../components/FindingItem';
 import { ToolTrace } from '../components/ToolTrace';
 import { Hash } from '../components/Hash';
 import { EmptyState } from '../components/EmptyState';
+import { Callout } from '../components/Callout';
 import { formatTimestamp, relativeTime } from '../lib/format';
 import styles from './Dashboard.module.css';
 
@@ -33,6 +34,12 @@ export function Dashboard() {
           </Button>
         </div>
       </div>
+
+      <Callout tone="note">
+        Example data. The rows below are real Watcher runs against illustrative tokens (FROG and
+        friends) from the project's test scenarios — not live production assets. See{' '}
+        <a href="/docs/reference">Scripts &amp; Environment</a> for how to register real ones.
+      </Callout>
 
       <Table>
         <thead>

@@ -30,7 +30,7 @@ export interface AssetRating {
 export const demoRatings: AssetRating[] = [
   {
     asset: 'FROG-ESTABLISHED',
-    displayName: 'Frog (established)',
+    displayName: 'Frog (example · established)',
     rating: 'Red',
     reasoning:
       'The rapid 80% decrease in liquidity after a stable period raises significant concerns about coordinated withdrawals, which match the pattern of known bad behavior in the crypto space. The absence of recent communication from the project team exacerbates this risk, leaving holders and potential investors with little assurance about the continuity or integrity of the project.',
@@ -54,7 +54,7 @@ export const demoRatings: AssetRating[] = [
   },
   {
     asset: 'FROG',
-    displayName: 'Frog',
+    displayName: 'Frog (example)',
     rating: 'Yellow',
     reasoning:
       "While FROG exhibits thin liquidity consistent with its age of 3 days and shows a small 5% drop, the contract is verified without any indicators of malicious behavior. The team's active communication and community engagement further mitigate risks. However, ongoing monitoring of liquidity is needed due to the initial volatility. There are no alarming past incident patterns identified.",
@@ -78,7 +78,7 @@ export const demoRatings: AssetRating[] = [
   },
   {
     asset: 'FROG-YOUNG',
-    displayName: 'Frog (young)',
+    displayName: 'Frog (example · young)',
     rating: 'Green',
     reasoning:
       'The asset "FROG-YOUNG" exhibits a stable risk profile based on several factors. The contract is verified, indicating the code is legitimate and has no known issues. Although liquidity has decreased by 5% within the last 24 hours, this is a minor change typical of a newly launched token just 3 days old, and overall liquidity remains within acceptable levels. Positive team engagement is evident with regular updates and no changes in ownership since deployment, suggesting stability and transparency. Additionally, there are no indicators of risk according to historical patterns related to liquidity or governance issues. Therefore, the asset appears to be low risk at this time.',
@@ -103,7 +103,7 @@ export const demoRatings: AssetRating[] = [
   },
   {
     asset: 'EXAMPLE',
-    displayName: 'Example Token',
+    displayName: 'Example Token (unconfigured)',
     rating: 'Red',
     reasoning:
       "The asset 'EXAMPLE' exhibits several critical risks: it has no liquidity pair registered, indicating a lack of market activity; its audit status cannot be determined due to the absence of a token address, which raises concerns about the security of its smart contract; and there is a complete lack of relevant recent activity or engagement from the development team, suggesting potential abandonment. Collectively, these factors create a high-risk scenario for investors.",

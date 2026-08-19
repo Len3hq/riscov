@@ -1,6 +1,6 @@
-import { Section, P, UL } from '../../components/docs/DocProse';
+import { Section, P, UL } from '../../components/DocProse';
 import { RatingBadge } from '../../components/RatingBadge';
-import { Callout } from '../../components/docs/Callout';
+import { Callout } from '../../components/Callout';
 import { CodeBlock } from '../../components/docs/CodeBlock';
 
 export function Overview() {

@@ -10,6 +10,11 @@
   z-index: 10;
 }
 
+.brand {
+  display: flex;
+  align-items: center;
+}
+
 .lockup {
   display: block;
   width: auto;

@@ -1,7 +1,7 @@
-import { Section, SubSection, P, UL } from '../../components/docs/DocProse';
+import { Section, SubSection, P, UL } from '../../components/DocProse';
 import { CodeBlock } from '../../components/docs/CodeBlock';
 import { Table, Th, Td, Tr } from '../../components/Table';
-import { Callout } from '../../components/docs/Callout';
+import { Callout } from '../../components/Callout';
 
 export function PayPerCall() {
   return (

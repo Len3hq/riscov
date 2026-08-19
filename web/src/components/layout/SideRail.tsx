@@ -1,7 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import styles from './SideRail.module.css';
 
-const links = [{ label: 'Dashboard', to: '/' }, { label: 'Docs', to: '/docs' }];
+const links = [
+  { label: 'Home', to: '/' },
+  { label: 'Dashboard', to: '/dashboard' },
+  { label: 'Docs', to: '/docs' },
+];
 const soon = ['Assets', 'Ledger'];
 
 export function SideRail() {

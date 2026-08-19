@@ -1,6 +1,6 @@
-import { Section, SubSection, P, UL } from '../../components/docs/DocProse';
+import { Section, SubSection, P, UL } from '../../components/DocProse';
 import { Table, Th, Td, Tr } from '../../components/Table';
-import { Callout } from '../../components/docs/Callout';
+import { Callout } from '../../components/Callout';
 
 const tools: { name: string; question: string }[] = [
   { name: 'getAuditStatus(asset)', question: 'Is the contract verified / audited, and when?' },
@@ -115,7 +115,7 @@ export function Architecture() {
           Both runs call the same <code className="hash">getLiquidity</code> tool and see a negative
           trend — the agent weighs that trend against age and history and reaches opposite,
           independently-reasoned ratings. See both full reasoning strings side by side on the{' '}
-          <a href="/">dashboard</a>.
+          <a href="/dashboard">dashboard</a>.
         </P>
         <Callout tone="note">
           <code className="hash">getPastIncidentPatterns</code> is what lets the reasoning say "this

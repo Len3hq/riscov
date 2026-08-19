@@ -1,4 +1,4 @@
-import { Section, SubSection, P } from '../../components/docs/DocProse';
+import { Section, SubSection, P } from '../../components/DocProse';
 import { Table, Th, Td, Tr } from '../../components/Table';
 
 const scripts: { cmd: string; does: string }[] = [
