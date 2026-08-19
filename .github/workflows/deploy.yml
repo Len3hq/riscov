@@ -42,14 +42,24 @@ jobs:
       - name: Build
         run: npm run vercel-build
 
+      # "vercel pull"/"vercel build" fail to look up project settings when
+      # only linked via env vars + --token in this CI environment ("User
+      # not found (404)", with or without --scope) even though "vercel
+      # deploy" authenticates fine the same way. Side-step it: the link
+      # file's contents are static and already known, so write it
+      # directly instead of asking the CLI to fetch it.
       - name: Link Vercel project
-        run: npx vercel@59.1.4 pull --yes --environment=production --token="$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
+        run: |
+          mkdir -p .vercel
+          cat > .vercel/project.json <<EOF
+          {"projectId":"$VERCEL_PROJECT_ID","orgId":"$VERCEL_ORG_ID","projectName":"riscov","settings":{"framework":null,"devCommand":null,"installCommand":null,"buildCommand":null,"outputDirectory":null,"rootDirectory":null}}
+          EOF
 
       - name: Package build output for Vercel
-        run: npx vercel@59.1.4 build --prod --yes --token="$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
+        run: npx vercel@59.1.4 build --prod --yes --token="$VERCEL_TOKEN"
 
       - name: Deploy prebuilt output
-        run: npx vercel@59.1.4 deploy --prebuilt --prod --force --yes --token="$VERCEL_TOKEN" --scope "$VERCEL_ORG_ID"
+        run: npx vercel@59.1.4 deploy --prebuilt --prod --force --yes --token="$VERCEL_TOKEN"
 
       - name: Verify production is live
         run: |
