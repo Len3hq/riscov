@@ -1,25 +1,26 @@
+import { NavLink } from 'react-router-dom';
 import styles from './SideRail.module.css';
 
-const items = [
-  { label: 'Dashboard', active: true },
-  { label: 'Assets', active: false },
-  { label: 'Ledger', active: false },
-  { label: 'Docs', active: false },
-];
+const links = [{ label: 'Dashboard', to: '/' }, { label: 'Docs', to: '/docs' }];
+const soon = ['Assets', 'Ledger'];
 
 export function SideRail() {
   return (
     <nav className={styles.rail} aria-label="Primary">
-      {items.map((item) => (
-        <button
+      {links.map((item) => (
+        <NavLink
           key={item.label}
-          type="button"
-          className={`text-small ${styles.item} ${item.active ? styles.active : ''}`}
-          disabled={!item.active}
-          aria-current={item.active ? 'page' : undefined}
+          to={item.to}
+          end={item.to === '/'}
+          className={({ isActive }) => `text-small ${styles.item} ${isActive ? styles.active : ''}`}
         >
           {item.label}
-          {!item.active && <span className={`text-label ${styles.soon}`}>soon</span>}
+        </NavLink>
+      ))}
+      {soon.map((label) => (
+        <button key={label} type="button" className={`text-small ${styles.item}`} disabled>
+          {label}
+          <span className={`text-label ${styles.soon}`}>soon</span>
         </button>
       ))}
     </nav>

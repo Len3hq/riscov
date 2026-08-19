@@ -1,0 +1,22 @@
+.wrap {
+  background: var(--surface-2);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+.label {
+  display: block;
+  padding: var(--space-2) var(--space-4) 0;
+  color: var(--text-dim);
+}
+
+.pre {
+  margin: 0;
+  padding: var(--space-4);
+  font-family: var(--font);
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+  color: var(--text);
+  white-space: pre;
+}

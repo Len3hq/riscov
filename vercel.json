@@ -1,5 +1,8 @@
 {
   "outputDirectory": "web/dist",
-  "rewrites": [{ "source": "/check-risk", "destination": "/api" }],
+  "rewrites": [
+    { "source": "/check-risk", "destination": "/api" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "regions": ["sin1"]
 }
