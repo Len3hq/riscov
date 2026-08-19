@@ -6,3 +6,6 @@ logs/**/*.json
 artifacts/
 cache/
 typechain-types/
+.vercel
+.env*
+api/index.mjs

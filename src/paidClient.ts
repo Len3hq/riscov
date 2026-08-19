@@ -3,8 +3,8 @@
  * actually paying for a call (Phase 4 exit condition, second half). Pays
  * through X Layer — no alternate chain, per project policy.
  */
-import { wrapFetchWithPaymentFromConfig, decodePaymentResponseHeader } from "@x402/fetch";
-import { ExactEvmScheme } from "@x402/evm";
+import { wrapFetchWithPaymentFromConfig, decodePaymentResponseHeader } from "@okxweb3/x402-fetch";
+import { ExactEvmScheme } from "@okxweb3/x402-evm";
 import { privateKeyToAccount } from "viem/accounts";
 
 async function main() {

@@ -1,8 +1,4 @@
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import path from "node:path";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import assetsFile from "./data/assets.json" with { type: "json" };
 
 export interface AssetConfig {
   displayName: string;
@@ -13,17 +9,7 @@ export interface AssetConfig {
   launchDate: string | null;
 }
 
-interface AssetsFile {
-  assets: Record<string, AssetConfig>;
-}
-
-function loadAssets(): Record<string, AssetConfig> {
-  const raw = readFileSync(path.join(__dirname, "data", "assets.json"), "utf-8");
-  const parsed = JSON.parse(raw) as AssetsFile;
-  return parsed.assets;
-}
-
-const assets = loadAssets();
+const assets = assetsFile.assets as Record<string, AssetConfig>;
 
 export function getAsset(symbol: string): AssetConfig {
   const asset = assets[symbol.toUpperCase()];
