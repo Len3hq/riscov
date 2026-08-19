@@ -1,9 +1,5 @@
-import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import path from "node:path";
+import incidentPatternsFile from "../data/incidentPatterns.json" with { type: "json" };
 import type { ToolDefinition } from "../agent/types.ts";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 interface IncidentPattern {
   id: string;
@@ -13,13 +9,7 @@ interface IncidentPattern {
   historicalExamples: string[];
 }
 
-function loadPatterns(): IncidentPattern[] {
-  const raw = readFileSync(path.join(__dirname, "..", "data", "incidentPatterns.json"), "utf-8");
-  const parsed = JSON.parse(raw) as { patterns: IncidentPattern[] };
-  return parsed.patterns;
-}
-
-const patterns = loadPatterns();
+const patterns = incidentPatternsFile.patterns as IncidentPattern[];
 
 async function getPastIncidentPatterns(args: Record<string, unknown>): Promise<unknown> {
   const keyword = args.keyword ? String(args.keyword).toLowerCase() : null;
