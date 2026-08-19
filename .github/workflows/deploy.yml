@@ -42,6 +42,9 @@ jobs:
       - name: Build
         run: npm run vercel-build
 
+      - name: Link Vercel project
+        run: npx vercel@59.1.4 pull --yes --environment=production --token="$VERCEL_TOKEN"
+
       - name: Package build output for Vercel
         run: npx vercel@59.1.4 build --prod --yes --token="$VERCEL_TOKEN"
 
