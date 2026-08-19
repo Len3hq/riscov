@@ -43,13 +43,13 @@ jobs:
         run: npm run vercel-build
 
       - name: Link Vercel project
-        run: npx vercel@59.1.4 pull --yes --environment=production --token="$VERCEL_TOKEN"
+        run: npx vercel@59.1.4 pull --yes --environment=production --token="$VERCEL_TOKEN" --scope christians-projects-50cbaaf7
 
       - name: Package build output for Vercel
-        run: npx vercel@59.1.4 build --prod --yes --token="$VERCEL_TOKEN"
+        run: npx vercel@59.1.4 build --prod --yes --token="$VERCEL_TOKEN" --scope christians-projects-50cbaaf7
 
       - name: Deploy prebuilt output
-        run: npx vercel@59.1.4 deploy --prebuilt --prod --force --yes --token="$VERCEL_TOKEN"
+        run: npx vercel@59.1.4 deploy --prebuilt --prod --force --yes --token="$VERCEL_TOKEN" --scope christians-projects-50cbaaf7
 
       - name: Verify production is live
         run: |
