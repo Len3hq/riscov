@@ -11,42 +11,44 @@ jobs:
     concurrency:
       group: vercel-production-deploy
       cancel-in-progress: true
+    env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_ORG_ID: team_6M6jo8FDcgWsmCbACZQ1YWdB
+      VERCEL_PROJECT_ID: prj_CZeKkxKOFYIRfPy5Ze5lbzJRO8PO
     steps:
       - uses: actions/checkout@v4
 
-      # Vercel occasionally serves a stale/empty build for this project —
-      # "vercel build" completes in well under 100ms with none of the
-      # expected esbuild/vite output, and the resulting deployment 404s on
-      # every route. It's intermittent and unrelated to --force/cache
-      # flags (seen with and without both). Root cause not pinned down
-      # from the CLI alone, so instead of trusting a single deploy, verify
-      # the live site afterward and retry until it's actually healthy.
-      - name: Deploy to Vercel (forced, verified, retried)
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          VERCEL_ORG_ID: team_6M6jo8FDcgWsmCbACZQ1YWdB
-          VERCEL_PROJECT_ID: prj_CZeKkxKOFYIRfPy5Ze5lbzJRO8PO
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Root cause of the flakiness this works around: when asked to build
+      # remotely, Vercel's zero-config @vercel/static-build sometimes never
+      # actually invokes our build command — "vercel build" completes in
+      # well under 100ms with no esbuild/vite output, and the deployment
+      # 404s on every route. It's reproducible from a clean checkout with
+      # --force and with no cache involved, so it isn't a caching issue.
+      #
+      # It reliably does NOT happen when the build command's output
+      # (api/index.mjs, web/dist/) already exists on disk before "vercel
+      # build" runs — Vercel then just packages what's there instead of
+      # trying (and silently failing) to produce it. So: build for real
+      # ourselves first, then hand Vercel the already-built output via
+      # --prebuilt, which skips its remote build step entirely. Verified
+      # against a from-scratch clone before relying on this in CI.
+      - name: Build
+        run: npm run vercel-build
+
+      - name: Package build output for Vercel
+        run: npx vercel@59.1.4 build --prod --yes --token="$VERCEL_TOKEN"
+
+      - name: Deploy prebuilt output
+        run: npx vercel@59.1.4 deploy --prebuilt --prod --force --yes --token="$VERCEL_TOKEN"
+
+      - name: Verify production is live
         run: |
-          set -e
-          for attempt in 1 2 3 4 5; do
-            echo "::group::Deploy attempt $attempt"
-            url=$(npx vercel@latest deploy --prod --force --token="$VERCEL_TOKEN" --yes | tail -1)
-            echo "Deployed: $url"
-            echo "::endgroup::"
-
-            sleep 5
-            root_code=$(curl -s -o /dev/null -w "%{http_code}" "https://riscov.vercel.app/")
-            docs_code=$(curl -s -o /dev/null -w "%{http_code}" "https://riscov.vercel.app/docs")
-            echo "Health check — root: $root_code, docs: $docs_code"
-
-            if [ "$root_code" = "200" ] && [ "$docs_code" = "200" ]; then
-              echo "Production verified healthy."
-              exit 0
-            fi
-
-            echo "Deployment unhealthy, retrying..."
-            sleep 10
-          done
-
-          echo "All $attempt attempts produced an unhealthy deployment."
-          exit 1
+          sleep 5
+          root_code=$(curl -s -o /dev/null -w "%{http_code}" "https://riscov.vercel.app/")
+          docs_code=$(curl -s -o /dev/null -w "%{http_code}" "https://riscov.vercel.app/docs")
+          echo "root: $root_code, docs: $docs_code"
+          [ "$root_code" = "200" ] && [ "$docs_code" = "200" ]
