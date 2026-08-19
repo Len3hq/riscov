@@ -1,0 +1,32 @@
+.card {
+  background: var(--surface);
+  border: var(--border-w) solid var(--border);
+  border-radius: var(--radius);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: var(--border-w) solid var(--border);
+}
+
+.eyebrow {
+  color: var(--text-muted);
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.timestamp {
+  color: var(--text-dim);
+}
+
+.body {
+  padding: var(--space-5);
+}

@@ -1,0 +1,50 @@
+.pageHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.detailBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.findings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 780px) {
+  .compareGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.emptyDemo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 100" width="320" height="100">
+  <rect x="10" y="62" width="28" height="28" fill="#F2F1ED"></rect>
+  <rect x="36" y="36" width="28" height="28" fill="#F2F1ED"></rect>
+  <rect x="62" y="10" width="28" height="28" fill="#35E08B"></rect>
+  <text x="112" y="62" font-family="JetBrains Mono, ui-monospace, monospace" font-size="40" font-weight="700" letter-spacing="-1" fill="#F2F1ED">riscov</text>
+</svg>

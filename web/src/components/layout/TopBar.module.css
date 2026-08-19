@@ -1,0 +1,16 @@
+.bar {
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--gutter);
+  background: var(--surface);
+  border-bottom: var(--border-w) solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.lockup {
+  display: block;
+  width: auto;
+}

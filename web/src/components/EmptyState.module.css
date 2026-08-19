@@ -1,0 +1,17 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding: var(--space-9) var(--space-5);
+  text-align: center;
+}
+
+.mark {
+  color: var(--text-dim);
+}
+
+.copy {
+  margin: 0;
+}

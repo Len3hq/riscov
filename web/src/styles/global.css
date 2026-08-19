@@ -1,0 +1,119 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: var(--text-body-size);
+  line-height: var(--text-body-line);
+  font-weight: var(--text-body-weight);
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100%;
+}
+
+p {
+  text-wrap: pretty;
+  max-width: var(--body-max-width);
+  margin: 0 0 var(--space-4);
+}
+
+a {
+  color: var(--accent);
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--green-dim);
+  color: var(--text);
+}
+
+/* Typography roles — §3 */
+.text-display {
+  font-size: var(--text-display-size);
+  line-height: var(--text-display-line);
+  font-weight: var(--text-display-weight);
+  letter-spacing: var(--text-display-tracking);
+  margin: 0;
+}
+
+.text-h1 {
+  font-size: var(--text-h1-size);
+  line-height: var(--text-h1-line);
+  font-weight: var(--text-h1-weight);
+  letter-spacing: var(--text-h1-tracking);
+  margin: 0;
+}
+
+.text-h2 {
+  font-size: var(--text-h2-size);
+  line-height: var(--text-h2-line);
+  font-weight: var(--text-h2-weight);
+  letter-spacing: var(--text-h2-tracking);
+  margin: 0;
+}
+
+.text-h3 {
+  font-size: var(--text-h3-size);
+  line-height: var(--text-h3-line);
+  font-weight: var(--text-h3-weight);
+  letter-spacing: var(--text-h3-tracking);
+  margin: 0;
+}
+
+.text-small {
+  font-size: var(--text-small-size);
+  line-height: var(--text-small-line);
+  font-weight: var(--text-small-weight);
+  letter-spacing: var(--text-small-tracking);
+}
+
+.text-label {
+  font-size: var(--text-label-size);
+  line-height: var(--text-label-line);
+  font-weight: var(--text-label-weight);
+  letter-spacing: var(--text-label-tracking);
+  text-transform: uppercase;
+}
+
+.text-data {
+  font-size: var(--text-data-size);
+  line-height: var(--text-data-line);
+  font-weight: var(--text-data-weight);
+  letter-spacing: var(--text-data-tracking);
+  font-variant-numeric: tabular-nums;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-dim {
+  color: var(--text-dim);
+}
+
+.hash {
+  background: var(--surface-2);
+  border: var(--border-w) solid var(--border);
+  padding: 2px 6px;
+  font-size: var(--text-small-size);
+  user-select: all;
+  white-space: nowrap;
+}
