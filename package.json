@@ -22,7 +22,7 @@
     "paid:server": "tsx src/paidServer.ts",
     "paid:client": "tsx src/paidClient.ts",
     "register:erc8004:mainnet": "hardhat run scripts/registerErc8004.cts --network xlayerMainnet",
-    "vercel-build": "esbuild src/vercelEntry.ts --bundle --platform=node --format=esm --packages=external --outfile=api/index.mjs"
+    "vercel-build": "esbuild src/vercelEntry.ts --bundle --platform=node --format=esm --packages=external --outfile=api/index.mjs && npm --prefix web install && npm --prefix web run build"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.0",
