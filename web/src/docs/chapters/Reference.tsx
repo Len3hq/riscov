@@ -24,26 +24,36 @@ const envGroups: { group: string; vars: { name: string; note: string }[] }[] = [
   {
     group: 'X Layer RPC',
     vars: [
-      { name: 'XLAYER_NETWORK', note: 'testnet | mainnet' },
+      { name: 'XLAYER_NETWORK', note: 'testnet | mainnet — switches RPC, chain id, and every on-chain read/write' },
       { name: 'XLAYER_TESTNET_RPC', note: 'testrpc.xlayer.tech' },
       { name: 'XLAYER_MAINNET_RPC', note: 'rpc.xlayer.tech' },
+      { name: 'OKLINK_API_KEY', note: 'optional — without it, getAuditStatus falls back to a raw bytecode-existence check instead of real verification data' },
     ],
+  },
+  {
+    group: 'Watcher scheduler',
+    vars: [{ name: 'WATCH_INTERVAL_MINUTES', note: 'how often the Watcher re-checks each registered asset' }],
   },
   {
     group: 'Ledger',
     vars: [
-      { name: 'WATCHER_PRIVATE_KEY', note: 'deploys + signs submitRating' },
+      { name: 'WATCHER_PRIVATE_KEY', note: 'deploys + signs submitRating — needs real OKB on mainnet' },
       { name: 'LEDGER_CONTRACT_ADDRESS', note: 'filled in after deploy:testnet/:mainnet' },
+      { name: 'DEMO_MARKET_CONTRACT_ADDRESS', note: 'filled in after deploy:demo-market:testnet/:mainnet' },
+      { name: 'DEMO_ASSET_SYMBOL', note: 'the assetId DemoMarket derives its leverage limit from' },
     ],
   },
   {
     group: 'x402 / MCP marketplace',
     vars: [
       { name: 'OKX_API_KEY / OKX_SECRET_KEY / OKX_PASSPHRASE', note: 'from the OKX Developer Portal' },
-      { name: 'X402_PAY_TO_ADDRESS', note: 'wallet that receives payment' },
-      { name: 'X402_NETWORK', note: 'CAIP-2 id, eip155:196 or eip155:1952' },
+      { name: 'X402_PAY_TO_ADDRESS / X402_PAY_TO_PRIVATE_KEY', note: 'wallet that receives payment' },
+      { name: 'X402_NETWORK', note: 'CAIP-2 id — eip155:196 mainnet or eip155:1952 testnet; independent of XLAYER_NETWORK, decide deliberately before it takes real payments' },
+      { name: 'X402_FACILITATOR_URL', note: 'defaults to https://web3.okx.com if unset' },
       { name: 'X402_PRICE_USDC', note: 'default $0.01' },
-      { name: 'RISCOV_AGENT_URI', note: 'ERC-8004 identity — mainnet only' },
+      { name: 'PAID_SERVER_PORT / PAID_SERVER_URL', note: 'local paid:server binding, unused on Vercel' },
+      { name: 'TEST_AGENT_PRIVATE_KEY', note: 'throwaway wallet used by paid:client to test-pay the endpoint' },
+      { name: 'RISCOV_AGENT_URI', note: 'ERC-8004 identity — mainnet only; must point at a live, hosted agent description before registering' },
     ],
   },
 ];

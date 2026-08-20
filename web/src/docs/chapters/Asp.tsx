@@ -1,4 +1,4 @@
-import { Section, SubSection, P, UL } from '../../components/DocProse';
+import { Section, SubSection, P, UL, OL } from '../../components/DocProse';
 import { CodeBlock } from '../../components/docs/CodeBlock';
 import { Callout } from '../../components/Callout';
 
@@ -13,13 +13,14 @@ export function Asp() {
         </P>
         <UL>
           <li>
-            <strong>Agent-to-MCP</strong> — riscov's rating check is exposed as a callable tool other
-            AI agents / LLM apps invoke directly, pay-per-call. This is the mode riscov targets first:
-            simpler, more standardized, and a natural fit for "call this function, get a rating back."
+            <strong>Agent-to-MCP (A2MCP)</strong> — riscov's rating check is exposed as a callable
+            tool other AI agents / LLM apps invoke directly, pay-per-call, fully automatic (no
+            negotiation, no evaluation step). This is riscov's integration mode.
           </li>
           <li>
-            <strong>Agent-to-Agent</strong> — other agents negotiate price/scope with riscov directly,
-            settled through escrow. Not the current integration path.
+            <strong>Agent-to-Agent (A2A)</strong> — other agents negotiate price/scope with riscov
+            directly, settled through escrow with a user sign-off step. Not the current integration
+            path.
           </li>
         </UL>
         <P>
@@ -28,27 +29,79 @@ export function Asp() {
         </P>
       </Section>
 
-      <SubSection title="Distribute as a Skill">
-        <P>
-          Packaging the check as a <strong>Skill</strong> lets any agent add it with one command,
-          mirroring how OKX's own DEX/market tools distribute (<code className="hash">okx/onchainos-skills</code>
-          ) — installable by any builder's agent, not just something they hand-integrate against.
-        </P>
-        <CodeBlock code={`npx skills add <riscov-skill>`} />
-      </SubSection>
-
-      <SubSection title="ERC-8004 identity">
+      <SubSection title="ERC-8004 identity — done">
         <P>
           The Watcher's identity is registered under <strong>ERC-8004</strong>, the on-chain agent
-          identity/reputation standard — so its track record (how often it's right, how fast it
-          responds) is checkable by any consumer independently of trusting OKX's marketplace alone.
+          identity/reputation standard — so its track record is checkable by any consumer
+          independently of trusting OKX's marketplace alone.
         </P>
         <CodeBlock label="scripts/registerErc8004.cts" code={`npm run register:erc8004:mainnet`} />
+        <Callout tone="note">
+          Registered on X Layer mainnet: <strong>agentId 11057</strong>, pointing at{' '}
+          <code className="hash">RISCOV_AGENT_URI = https://riscov.vercel.app/agent.json</code> — a
+          hosted description of the Watcher's capabilities and service endpoints (the MCP tool and
+          the paid HTTP endpoint), served as a static file from this site.
+        </Callout>
         <Callout tone="warn">
           The IdentityRegistry is deployed at the same address across 30+ chains including X Layer
-          mainnet — but <strong>not</strong> X Layer testnet. This step is mainnet-only, and{' '}
-          <code className="hash">RISCOV_AGENT_URI</code> should point at a hosted description of the
-          Watcher's capabilities and service endpoints before running it.
+          mainnet — but <strong>not</strong> X Layer testnet. This step only works against mainnet.
+        </Callout>
+      </SubSection>
+
+      <SubSection title="Listing on OKX.AI — the real steps">
+        <P>
+          This is OKX.AI's actual documented onboarding flow (<code className="hash">okx.ai/tutorial/asp</code>),
+          not a summary — each step is a prompt you hand to an agent CLI (Claude Code, OpenClaw,
+          Hermes, or Codex), which then drives the registration interactively:
+        </P>
+        <OL>
+          <li>
+            <strong>Have an agent CLI installed.</strong> Claude Code, OpenClaw, Hermes, or Codex —
+            or a cloud-hosted agent from a third party.
+          </li>
+          <li>
+            <strong>Install Onchain OS.</strong> Run the prompt below in your agent CLI, then open a
+            new session once it finishes.
+            <CodeBlock code={`npx skills add okx/onchainos-skills --yes -g`} />
+            <Callout tone="warn">
+              This is a <strong>global</strong> skill install (not scoped to this project) — it adds
+              a third-party (OKX) skill package to your CLI's global skill set. Do this deliberately,
+              not as a side effect of another task.
+            </Callout>
+          </li>
+          <li>
+            <strong>Log in to the Agentic Wallet.</strong> Have your email ready, then send:
+            <CodeBlock code={`Log in to Agentic Wallet on Onchain OS with my email`} />
+          </li>
+          <li>
+            <strong>Register as an A2MCP ASP</strong>, using the ERC-8004 identity already
+            registered above:
+            <CodeBlock
+              code={`Help me register an A2MCP ASP on OKX.AI using OKX Agent Identity from Onchain OS`}
+            />
+            <P>
+              For A2MCP, the service endpoint must be either free (returns the result directly) or
+              x402-based — riscov's <code className="hash">POST /check-risk</code> is the latter.
+            </P>
+          </li>
+          <li>
+            <strong>List the ASP:</strong>
+            <CodeBlock code={`Help me list my ASP on OKX.AI using Onchain OS`} />
+            <P>
+              Review takes up to 24 hours; the result is emailed to the address on the Agentic
+              Wallet and posted back into the agent conversation. Even before approval (or if review
+              doesn't pass), the service is still reachable directly by its Agent ID.
+            </P>
+          </li>
+          <li>
+            <strong>Take orders — fully automatic for A2MCP.</strong> Once listed, calls from other
+            agents' MCP clients are billed and settled in real time via x402; free calls just return
+            the result. No evaluation/rating step applies to A2MCP (that's an A2A-only mechanic).
+          </li>
+        </OL>
+        <Callout tone="note">
+          Steps 3–5 need a human in the loop (your email, the wallet login) — they can't be
+          completed unattended by the agent alone.
         </Callout>
       </SubSection>
     </>

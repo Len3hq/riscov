@@ -1,12 +1,20 @@
 {
-  "_comment": "Registry of assets the Watcher can check. Fill in real addresses as they're deployed/found on X Layer testnet (Phase 0). Any field left null means that tool will honestly report 'not configured' rather than fabricate a number.",
+  "_comment": "Registry of assets the Watcher can check. Fill in real addresses as they're deployed/found on X Layer (network selected by XLAYER_NETWORK). Any field left null means that tool will honestly report 'not configured' rather than fabricate a number.",
   "assets": {
     "BTC": {
-      "displayName": "BTC (Chainlink BTC/USD reference feed, X Layer testnet)",
+      "displayName": "BTC (Chainlink BTC/USD reference feed, X Layer mainnet)",
       "tokenAddress": null,
       "pairAddress": null,
       "porFeedAddress": null,
-      "priceFeedAddress": "0xD4eb21e5cfa9b39fA23a5Aae1b7348a05514Ed54",
+      "priceFeedAddress": "0x4D6f6488a2B3a5f7b088f276887f608a1e9805c4",
+      "launchDate": null
+    },
+    "OKB": {
+      "displayName": "OKB (Chainlink OKB/USD reference feed, X Layer mainnet)",
+      "tokenAddress": null,
+      "pairAddress": null,
+      "porFeedAddress": null,
+      "priceFeedAddress": "0x4Ff345b18a2bF894F8627F41501FBf30d5C5e7BE",
       "launchDate": null
     }
   }

@@ -39,3 +39,7 @@ export function P({ children }: PropsWithChildren) {
 export function UL({ children }: { children: ReactNode }) {
   return <ul className={styles.list}>{children}</ul>;
 }
+
+export function OL({ children }: { children: ReactNode }) {
+  return <ol className={styles.list}>{children}</ol>;
+}
