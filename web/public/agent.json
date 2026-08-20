@@ -1,0 +1,31 @@
+{
+  "name": "Riscov Watcher",
+  "description": "On-chain risk-rating agent for assets on X Layer. Gathers evidence itself (liquidity, audit status, market price, reserve status, recent news/governance activity, and known incident patterns) and produces a Green/Yellow/Red rating with written reasoning — not a fixed-threshold lookup.",
+  "chain": {
+    "name": "X Layer",
+    "mainnetChainId": 196,
+    "testnetChainId": 1952
+  },
+  "ratingsLedger": {
+    "contract": "RiscovLedger",
+    "address": "0x2398E782d566E257A9e289248309Af98bbeC1300",
+    "read": "getRating(bytes32 assetId) / hasRating(bytes32 assetId)"
+  },
+  "serviceEndpoints": [
+    {
+      "type": "mcp",
+      "transport": "stdio",
+      "tool": "checkAssetRisk",
+      "description": "Free/direct integration path for MCP-speaking agent frameworks."
+    },
+    {
+      "type": "http",
+      "protocol": "x402",
+      "method": "POST",
+      "path": "/check-risk",
+      "url": "https://riscov.vercel.app/check-risk",
+      "price": "$0.01 USDC",
+      "description": "Paid, x402-gated HTTP endpoint on the OKX Onchain OS facilitator."
+    }
+  ]
+}
