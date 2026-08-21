@@ -19,7 +19,11 @@ export const config = {
         : process.env.XLAYER_TESTNET_RPC || "https://testrpc.xlayer.tech",
     chainId: (process.env.XLAYER_NETWORK || "testnet") === "mainnet" ? 196 : 1952,
   },
-  oklinkApiKey: process.env.OKLINK_API_KEY ?? "",
+  okx: {
+    apiKey: process.env.OKX_API_KEY ?? "",
+    secretKey: process.env.OKX_SECRET_KEY ?? "",
+    passphrase: process.env.OKX_PASSPHRASE ?? "",
+  },
   watchIntervalMinutes: Number(process.env.WATCH_INTERVAL_MINUTES || 5),
   ledger: {
     contractAddress: process.env.LEDGER_CONTRACT_ADDRESS ?? "",
