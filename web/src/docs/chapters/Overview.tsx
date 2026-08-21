@@ -132,8 +132,8 @@ export function Overview() {
             <code className="hash">POST /check-risk</code> over HTTP, settled in USDC on X Layer.
           </li>
           <li>
-            <a href="/docs/asp">Discover it as an ASP</a> — found and paid for through OKX's AI agent
-            marketplace, no manual integration.
+            <a href="/docs/asp">Discover it as an ASP</a> — registered on OKX's AI agent marketplace
+            (agentId 11120, A2MCP), found and paid for with no manual integration.
           </li>
           <li>
             <a href="/docs/ledger">Read the Ledger directly</a> — the current rating for any watched

@@ -48,7 +48,14 @@ export function Asp() {
         </Callout>
       </SubSection>
 
-      <SubSection title="Listing on OKX.AI — the real steps">
+      <SubSection title="Listing on OKX.AI — done">
+        <Callout tone="note">
+          Registered as an <strong>A2MCP ASP</strong> on OKX.AI: <strong>agentId 11120</strong>,
+          offering the "Asset Risk Check" service ($0.01 USDT/call) against{' '}
+          <code className="hash">POST /check-risk</code>. Submitted for marketplace review — result
+          arrives by email within 24h, but the service is already callable directly by Agent ID
+          regardless of approval status.
+        </Callout>
         <P>
           This is OKX.AI's actual documented onboarding flow (<code className="hash">okx.ai/tutorial/asp</code>),
           not a summary — each step is a prompt you hand to an agent CLI (Claude Code, OpenClaw,

@@ -15,6 +15,7 @@ Built for the X Layer hackathon.
 | `RiscovLedger` contract | Deployed on X Layer mainnet: [`0x2398E782d566E257A9e289248309Af98bbeC1300`](https://www.oklink.com/xlayer/address/0x2398E782d566E257A9e289248309Af98bbeC1300) |
 | `DemoMarket` contract | Deployed on X Layer mainnet: [`0x44E0C7BAF11b8a405B87F7134D5b4fF9780F09f0`](https://www.oklink.com/xlayer/address/0x44E0C7BAF11b8a405B87F7134D5b4fF9780F09f0) — its leverage limit is derived live from the Ledger's current rating, no separate transaction |
 | ERC-8004 agent identity | Registered on X Layer mainnet — **agentId `11057`**, pointing at [`riscov.vercel.app/agent.json`](https://riscov.vercel.app/agent.json) |
+| OKX.AI marketplace listing | Registered as an **A2MCP ASP** — **agentId `11120`**, offering "Asset Risk Check" ($0.01 USDT/call). Submitted for review (result within 24h); already callable directly by Agent ID regardless of approval status |
 | MCP tool | `checkAssetRisk` — free, hosted at [`riscov.vercel.app/mcp`](https://riscov.vercel.app/mcp), no cloning required (stdio also available locally via `npm run mcp:server`) |
 | Paid endpoint | `POST /check-risk`, x402-gated, `$0.01` per call |
 | Asset coverage | 8 real X Layer mainnet assets with live on-chain evidence — see below |

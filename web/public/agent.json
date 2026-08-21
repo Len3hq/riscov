@@ -11,6 +11,19 @@
     "address": "0x2398E782d566E257A9e289248309Af98bbeC1300",
     "read": "getRating(bytes32 assetId) / hasRating(bytes32 assetId)"
   },
+  "identity": {
+    "standard": "ERC-8004",
+    "agentId": "11057",
+    "chain": "X Layer mainnet"
+  },
+  "marketplace": {
+    "provider": "OKX.AI",
+    "agentId": "11120",
+    "role": "ASP",
+    "serviceType": "A2MCP",
+    "listingStatus": "pending_review",
+    "note": "Reachable at the service endpoints below regardless of listing approval status."
+  },
   "serviceEndpoints": [
     {
       "type": "mcp",
