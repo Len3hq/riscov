@@ -7,13 +7,25 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const LOGS_DIR = path.join(__dirname, "..", "..", "logs");
 const REASONING_DIR = path.join(LOGS_DIR, "reasoning");
 
-export function logResult(result: WatcherResult): string {
-  mkdirSync(LOGS_DIR, { recursive: true });
-  const safeAsset = result.asset.replace(/[^a-zA-Z0-9_-]/g, "_");
-  const filename = `${safeAsset}-${result.timestamp.replace(/[:.]/g, "-")}.json`;
-  const filepath = path.join(LOGS_DIR, filename);
-  writeFileSync(filepath, JSON.stringify(result, null, 2), "utf-8");
-  return filepath;
+/**
+ * Best-effort local persistence — never throws. Serverless hosts (e.g.
+ * Vercel) run this on a read-only filesystem, and a logging failure must
+ * never take down a request whose actual work (the rating) already
+ * succeeded, especially on the paid endpoint where the payer has already
+ * settled payment for that result by the time this runs.
+ */
+export function logResult(result: WatcherResult): string | null {
+  try {
+    mkdirSync(LOGS_DIR, { recursive: true });
+    const safeAsset = result.asset.replace(/[^a-zA-Z0-9_-]/g, "_");
+    const filename = `${safeAsset}-${result.timestamp.replace(/[:.]/g, "-")}.json`;
+    const filepath = path.join(LOGS_DIR, filename);
+    writeFileSync(filepath, JSON.stringify(result, null, 2), "utf-8");
+    return filepath;
+  } catch (err) {
+    console.warn(`logResult: local logging skipped (${err instanceof Error ? err.message : err})`);
+    return null;
+  }
 }
 
 /**
@@ -22,19 +34,24 @@ export function logResult(result: WatcherResult): string {
  * so anyone with the on-chain reasonHash can find and verify it locally.
  * Stands in for a real hosted endpoint/IPFS pin (Phase 4+).
  */
-export function logReasoningByHash(reasonHash: string, result: WatcherResult): string {
-  mkdirSync(REASONING_DIR, { recursive: true });
-  const filepath = path.join(REASONING_DIR, `${reasonHash}.json`);
-  writeFileSync(
-    filepath,
-    JSON.stringify(
-      { asset: result.asset, rating: result.rating, reasoning: result.reasoning, evidenceCited: result.evidenceCited, timestamp: result.timestamp },
-      null,
-      2
-    ),
-    "utf-8"
-  );
-  return filepath;
+export function logReasoningByHash(reasonHash: string, result: WatcherResult): string | null {
+  try {
+    mkdirSync(REASONING_DIR, { recursive: true });
+    const filepath = path.join(REASONING_DIR, `${reasonHash}.json`);
+    writeFileSync(
+      filepath,
+      JSON.stringify(
+        { asset: result.asset, rating: result.rating, reasoning: result.reasoning, evidenceCited: result.evidenceCited, timestamp: result.timestamp },
+        null,
+        2
+      ),
+      "utf-8"
+    );
+    return filepath;
+  } catch (err) {
+    console.warn(`logReasoningByHash: local logging skipped (${err instanceof Error ? err.message : err})`);
+    return null;
+  }
 }
 
 export function printResult(result: WatcherResult): void {

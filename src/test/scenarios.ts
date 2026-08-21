@@ -9,12 +9,12 @@ import { youngTokenScenarioTools, establishedTokenScenarioTools } from "./fixtur
 
 async function main() {
   console.log("=== Scenario 1: 3-day-old token, thin (but stable) liquidity ===");
-  const r1 = await runWatcher({ asset: "FROG-YOUNG", tools: youngTokenScenarioTools });
+  const r1 = await runWatcher({ asset: "DEMO-YOUNG", tools: youngTokenScenarioTools });
   printResult(r1);
   logResult(r1);
 
   console.log("\n=== Scenario 2: 210-day-old token, same-looking liquidity signal but an 80% overnight drop ===");
-  const r2 = await runWatcher({ asset: "FROG-ESTABLISHED", tools: establishedTokenScenarioTools });
+  const r2 = await runWatcher({ asset: "DEMO-ESTABLISHED", tools: establishedTokenScenarioTools });
   printResult(r2);
   logResult(r2);
 

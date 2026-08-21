@@ -1,5 +1,5 @@
 {
-  "_comment": "Registry of assets the Watcher can check. Fill in real addresses as they're deployed/found on X Layer (network selected by XLAYER_NETWORK). Any field left null means that tool will honestly report 'not configured' rather than fabricate a number. pairAddress is null everywhere: X Layer's only real DEX (QuickSwap) deployed V3 Algebra pools on mainnet, not the Uniswap-V2-shaped pair (getReserves/token0/token1) getLiquidity.ts expects, so no real value exists to put here yet.",
+  "_comment": "Registry of assets the Watcher can check. Fill in real addresses as they're deployed/found on X Layer (network selected by XLAYER_NETWORK). Any field left null means that tool will honestly report 'not configured' rather than fabricate a number. pairAddress points at a real QuickSwap Algebra V3 pool (getLiquidity.ts reads token balances + active liquidity from it, not V2-style getReserves) for OKB/ETH/USDC/USDT0 — verified on-chain against AlgebraFactory 0xd2480162Aa7F02Ead7BF4C127465446150D58452. BTC and the OKX-wrapped x-assets (xBTC/xETH/xSOL) have no pool against WOKB/WETH/USDC/USDT0 on this factory, so pairAddress stays null for those — genuinely no DEX liquidity to read, not a config gap.",
   "assets": {
     "BTC": {
       "displayName": "BTC (Chainlink BTC/USD reference feed, X Layer mainnet)",
@@ -12,7 +12,7 @@
     "OKB": {
       "displayName": "OKB (native gas token; tokenAddress is WOKB, its wrapped ERC-20 form)",
       "tokenAddress": "0xe538905cf8410324e03A5A23C1c177a474D59b2b",
-      "pairAddress": null,
+      "pairAddress": "0x0D1DfF29789604849096B6a60e655De2DB7CF7E6",
       "porFeedAddress": null,
       "priceFeedAddress": "0x4Ff345b18a2bF894F8627F41501FBf30d5C5e7BE",
       "launchDate": null
@@ -20,7 +20,7 @@
     "ETH": {
       "displayName": "ETH (tokenAddress is WETH, its wrapped ERC-20 form on X Layer)",
       "tokenAddress": "0x5A77f1443D16ee5761d310e38b62f77f726bC71c",
-      "pairAddress": null,
+      "pairAddress": "0xac50cD06b1672E9E41E0D5EaaaD963eC3E49EA23",
       "porFeedAddress": null,
       "priceFeedAddress": "0x8b85b50535551F8E8cDAF78dA235b5Cf1005907b",
       "launchDate": null
@@ -28,7 +28,7 @@
     "USDC": {
       "displayName": "USDC (native issuance on X Layer)",
       "tokenAddress": "0x74b7F16337b8972027F6196A17a631aC6dE26d22",
-      "pairAddress": null,
+      "pairAddress": "0xac50cD06b1672E9E41E0D5EaaaD963eC3E49EA23",
       "porFeedAddress": null,
       "priceFeedAddress": "0xB8a08c178D96C315FbFB5661ABD208477391BC40",
       "launchDate": null
@@ -36,7 +36,7 @@
     "USDT0": {
       "displayName": "USDT0 (omnichain USDT on X Layer)",
       "tokenAddress": "0x779Ded0c9e1022225f8E0630b35a9b54bE713736",
-      "pairAddress": null,
+      "pairAddress": "0xc0A3cCb753EeFe2Dbc629bEF4D2AF56e1856d10C",
       "porFeedAddress": null,
       "priceFeedAddress": "0x673b428Fd1df93a6F77fA7ea1F8eeD8A4Ff36b9f",
       "launchDate": null

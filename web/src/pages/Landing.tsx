@@ -140,7 +140,7 @@ export function Landing() {
             <span className="text-label text-dim">see it for yourself</span>
             <h2 className="text-h2">watch it rate example assets</h2>
             <p className="text-small text-muted">
-              The dashboard shows real Watcher runs against illustrative example tokens (FROG and
+              The dashboard shows real Watcher runs against illustrative example tokens (DEMO and
               friends) — not live production assets.
             </p>
           </div>

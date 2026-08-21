@@ -27,7 +27,7 @@ export const config = {
   },
   demoMarket: {
     contractAddress: process.env.DEMO_MARKET_CONTRACT_ADDRESS ?? "",
-    assetSymbol: process.env.DEMO_ASSET_SYMBOL || "FROG",
+    assetSymbol: process.env.DEMO_ASSET_SYMBOL || "DEMO",
   },
 };
 

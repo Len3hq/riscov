@@ -2,6 +2,18 @@ import { Section, P, UL } from '../../components/DocProse';
 import { RatingBadge } from '../../components/RatingBadge';
 import { Callout } from '../../components/Callout';
 import { CodeBlock } from '../../components/docs/CodeBlock';
+import { Table, Th, Td, Tr } from '../../components/Table';
+
+const coverage: { asset: string; note: string }[] = [
+  { asset: 'BTC', note: 'Chainlink price reference' },
+  { asset: 'OKB', note: 'X Layer’s native gas token — token + price' },
+  { asset: 'ETH', note: 'token + price' },
+  { asset: 'USDC', note: 'token + price' },
+  { asset: 'USDT0', note: 'token + price' },
+  { asset: 'XBTC', note: 'OKX Wrapped BTC — token + price + proof-of-reserve' },
+  { asset: 'XETH', note: 'OKX Wrapped ETH — token + price + proof-of-reserve' },
+  { asset: 'XSOL', note: 'OKX Wrapped SOL — token + price + proof-of-reserve' },
+];
 
 export function Overview() {
   return (
@@ -71,11 +83,49 @@ export function Overview() {
         </Callout>
       </Section>
 
+      <Section title="Asset coverage today">
+        <P>
+          The Watcher can currently analyze <strong>{coverage.length} assets</strong> on X Layer
+          mainnet, each backed by real on-chain data — not placeholders. <code className="hash">
+            src/data/assets.json
+          </code>{' '}
+          is the source of truth; any field left unset means the corresponding tool honestly reports
+          "not configured" rather than fabricate a number.
+        </P>
+        <Table>
+          <thead>
+            <tr>
+              <Th>asset</Th>
+              <Th>what's live</Th>
+            </tr>
+          </thead>
+          <tbody>
+            {coverage.map((c) => (
+              <Tr key={c.asset}>
+                <Td>
+                  <code className="hash">{c.asset}</code>
+                </Td>
+                <Td className="text-small text-muted">{c.note}</Td>
+              </Tr>
+            ))}
+          </tbody>
+        </Table>
+        <Callout tone="note">
+          Liquidity depth (<code className="hash">getLiquidity</code>) isn't live for any asset yet —
+          X Layer's only real DEX deployed concentrated-liquidity (V3 Algebra) pools, not the
+          classic Uniswap-V2-shaped pair this tool currently reads. This list is growing as we add
+          more assets and evidence sources, and we're actively looking for ecosystem
+          support — real liquidity pools to read from, more Chainlink coverage, and connections to
+          projects building on X Layer who want their asset covered.
+        </Callout>
+      </Section>
+
       <Section title="Ways to use it">
         <UL>
           <li>
             <a href="/docs/mcp">Connect via MCP</a> — call <code className="hash">checkAssetRisk</code>{' '}
-            directly from any MCP-speaking agent, free, over stdio.
+            directly from any MCP-speaking agent, free, hosted at{' '}
+            <code className="hash">riscov.vercel.app/mcp</code> — no cloning required.
           </li>
           <li>
             <a href="/docs/x402">Pay-per-call via x402</a> — hit{' '}

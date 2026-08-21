@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { demoRatings } from '../data/demoRatings';
-import { Button } from '../components/Button';
 import { RatingBadge } from '../components/RatingBadge';
 import { Card, CardBody, CardHeader } from '../components/Card';
 import { Table, Th, Td, Tr } from '../components/Table';
@@ -16,8 +15,8 @@ export function Dashboard() {
   const [selected, setSelected] = useState(demoRatings[0].asset);
   const active = demoRatings.find((r) => r.asset === selected) ?? demoRatings[0];
 
-  const young = demoRatings.find((r) => r.asset === 'FROG-YOUNG');
-  const established = demoRatings.find((r) => r.asset === 'FROG-ESTABLISHED');
+  const young = demoRatings.find((r) => r.asset === 'DEMO-YOUNG');
+  const established = demoRatings.find((r) => r.asset === 'DEMO-ESTABLISHED');
 
   return (
     <>
@@ -28,15 +27,10 @@ export function Dashboard() {
             watched assets
           </h1>
         </div>
-        <div className={styles.headerActions}>
-          <Button variant="primary" disabled title="check-risk is a paid x402 endpoint — not wired in this demo">
-            check now
-          </Button>
-        </div>
       </div>
 
       <Callout tone="note">
-        Example data. The rows below are real Watcher runs against illustrative tokens (FROG and
+        Example data. The rows below are real Watcher runs against illustrative tokens (DEMO and
         friends) from the project's test scenarios — not live production assets. See{' '}
         <a href="/docs/reference">Scripts &amp; Environment</a> for how to register real ones.
       </Callout>

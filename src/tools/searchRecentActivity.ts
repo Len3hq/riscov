@@ -74,11 +74,11 @@ export const searchRecentActivityTool: ToolDefinition = {
       parameters: {
         type: "object",
         properties: {
-          asset: { type: "string", description: "Asset symbol, e.g. 'FROG'" },
+          asset: { type: "string", description: "Asset symbol, e.g. 'DEMO'" },
           query: {
             type: "string",
             description:
-              "Optional custom search query, e.g. the project's full name or 'FROG token rug pull' — defaults to the asset symbol if omitted.",
+              "Optional custom search query, e.g. the project's full name or 'DEMO token rug pull' — defaults to the asset symbol if omitted.",
           },
           limit: { type: "number", description: "Max results to return (default 8, max 15)" },
         },

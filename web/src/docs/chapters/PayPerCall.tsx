@@ -18,7 +18,7 @@ export function PayPerCall() {
           code={`POST /check-risk
 Content-Type: application/json
 
-{ "asset": "FROG" }`}
+{ "asset": "DEMO" }`}
         />
         <P>
           Called without a valid payment, it returns <code className="hash">402 Payment Required</code>{' '}
@@ -91,7 +91,7 @@ const fetchWithPayment = wrapFetchWithPaymentFromConfig(fetch, {
 const res = await fetchWithPayment("https://riscov.vercel.app/check-risk", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ asset: "FROG" }),
+  body: JSON.stringify({ asset: "DEMO" }),
 });
 // res.headers.get("PAYMENT-RESPONSE") — settlement receipt`}
         />

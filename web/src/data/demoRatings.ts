@@ -29,8 +29,8 @@ export interface AssetRating {
  */
 export const demoRatings: AssetRating[] = [
   {
-    asset: 'FROG-ESTABLISHED',
-    displayName: 'Frog (example · established)',
+    asset: 'DEMO-ESTABLISHED',
+    displayName: 'Demo token (example · established)',
     rating: 'Red',
     reasoning:
       'The rapid 80% decrease in liquidity after a stable period raises significant concerns about coordinated withdrawals, which match the pattern of known bad behavior in the crypto space. The absence of recent communication from the project team exacerbates this risk, leaving holders and potential investors with little assurance about the continuity or integrity of the project.',
@@ -41,9 +41,9 @@ export const demoRatings: AssetRating[] = [
       "Evidence aligns with the 'Coordinated liquidity withdrawal' pattern.",
     ],
     toolCalls: [
-      { tool: 'getLiquidity', args: { asset: 'FROG-ESTABLISHED' }, tookMs: 1 },
-      { tool: 'getAuditStatus', args: { asset: 'FROG-ESTABLISHED' }, tookMs: 0 },
-      { tool: 'searchRecentActivity', args: { asset: 'FROG-ESTABLISHED' }, tookMs: 0 },
+      { tool: 'getLiquidity', args: { asset: 'DEMO-ESTABLISHED' }, tookMs: 1 },
+      { tool: 'getAuditStatus', args: { asset: 'DEMO-ESTABLISHED' }, tookMs: 0 },
+      { tool: 'searchRecentActivity', args: { asset: 'DEMO-ESTABLISHED' }, tookMs: 0 },
       { tool: 'getPastIncidentPatterns', args: { keyword: 'liquidity' }, tookMs: 0 },
     ],
     modelTurns: 5,
@@ -53,11 +53,11 @@ export const demoRatings: AssetRating[] = [
     tokenAgeDays: 210,
   },
   {
-    asset: 'FROG',
-    displayName: 'Frog (example)',
+    asset: 'DEMO',
+    displayName: 'Demo token (example)',
     rating: 'Yellow',
     reasoning:
-      "While FROG exhibits thin liquidity consistent with its age of 3 days and shows a small 5% drop, the contract is verified without any indicators of malicious behavior. The team's active communication and community engagement further mitigate risks. However, ongoing monitoring of liquidity is needed due to the initial volatility. There are no alarming past incident patterns identified.",
+      "While DEMO exhibits thin liquidity consistent with its age of 3 days and shows a small 5% drop, the contract is verified without any indicators of malicious behavior. The team's active communication and community engagement further mitigate risks. However, ongoing monitoring of liquidity is needed due to the initial volatility. There are no alarming past incident patterns identified.",
     evidenceCited: [
       'Liquidity at 12,000 with a 5% decrease in the last 24 hours',
       'Verified contract with no red flags',
@@ -65,9 +65,9 @@ export const demoRatings: AssetRating[] = [
       'No concerning incident patterns detected',
     ],
     toolCalls: [
-      { tool: 'getLiquidity', args: { asset: 'FROG' }, tookMs: 0 },
-      { tool: 'getAuditStatus', args: { asset: 'FROG' }, tookMs: 0 },
-      { tool: 'searchRecentActivity', args: { asset: 'FROG' }, tookMs: 0 },
+      { tool: 'getLiquidity', args: { asset: 'DEMO' }, tookMs: 0 },
+      { tool: 'getAuditStatus', args: { asset: 'DEMO' }, tookMs: 0 },
+      { tool: 'searchRecentActivity', args: { asset: 'DEMO' }, tookMs: 0 },
       { tool: 'getPastIncidentPatterns', args: { keyword: 'liquidity' }, tookMs: 1 },
     ],
     modelTurns: 5,
@@ -77,11 +77,11 @@ export const demoRatings: AssetRating[] = [
     tokenAgeDays: 3,
   },
   {
-    asset: 'FROG-YOUNG',
-    displayName: 'Frog (example · young)',
+    asset: 'DEMO-YOUNG',
+    displayName: 'Demo token (example · young)',
     rating: 'Green',
     reasoning:
-      'The asset "FROG-YOUNG" exhibits a stable risk profile based on several factors. The contract is verified, indicating the code is legitimate and has no known issues. Although liquidity has decreased by 5% within the last 24 hours, this is a minor change typical of a newly launched token just 3 days old, and overall liquidity remains within acceptable levels. Positive team engagement is evident with regular updates and no changes in ownership since deployment, suggesting stability and transparency. Additionally, there are no indicators of risk according to historical patterns related to liquidity or governance issues. Therefore, the asset appears to be low risk at this time.',
+      'The asset "DEMO-YOUNG" exhibits a stable risk profile based on several factors. The contract is verified, indicating the code is legitimate and has no known issues. Although liquidity has decreased by 5% within the last 24 hours, this is a minor change typical of a newly launched token just 3 days old, and overall liquidity remains within acceptable levels. Positive team engagement is evident with regular updates and no changes in ownership since deployment, suggesting stability and transparency. Additionally, there are no indicators of risk according to historical patterns related to liquidity or governance issues. Therefore, the asset appears to be low risk at this time.',
     evidenceCited: [
       'Verified contract status',
       'Liquidity down 5% in 24 hours, typical for new token',
@@ -90,9 +90,9 @@ export const demoRatings: AssetRating[] = [
       'No matches to past incident patterns',
     ],
     toolCalls: [
-      { tool: 'getLiquidity', args: { asset: 'FROG-YOUNG' }, tookMs: 0 },
-      { tool: 'getAuditStatus', args: { asset: 'FROG-YOUNG' }, tookMs: 0 },
-      { tool: 'searchRecentActivity', args: { asset: 'FROG-YOUNG' }, tookMs: 0 },
+      { tool: 'getLiquidity', args: { asset: 'DEMO-YOUNG' }, tookMs: 0 },
+      { tool: 'getAuditStatus', args: { asset: 'DEMO-YOUNG' }, tookMs: 0 },
+      { tool: 'searchRecentActivity', args: { asset: 'DEMO-YOUNG' }, tookMs: 0 },
       { tool: 'getPastIncidentPatterns', args: { keyword: 'liquidity' }, tookMs: 1 },
     ],
     modelTurns: 8,

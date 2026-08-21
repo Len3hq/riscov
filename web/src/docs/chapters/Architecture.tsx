@@ -84,7 +84,7 @@ export function Architecture() {
           </thead>
           <tbody>
             <Tr>
-              <Td>FROG-YOUNG</Td>
+              <Td>DEMO-YOUNG</Td>
               <Td numeric className="text-data">
                 -5%
               </Td>
@@ -97,7 +97,7 @@ export function Architecture() {
               </Td>
             </Tr>
             <Tr>
-              <Td>FROG-ESTABLISHED</Td>
+              <Td>DEMO-ESTABLISHED</Td>
               <Td numeric className="text-data">
                 -80%
               </Td>

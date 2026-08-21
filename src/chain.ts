@@ -14,10 +14,17 @@ export const ERC20_ABI = [
   "function decimals() view returns (uint8)",
   "function totalSupply() view returns (uint256)",
   "function symbol() view returns (string)",
+  "function balanceOf(address account) view returns (uint256)",
 ];
 
-export const UNISWAP_V2_PAIR_ABI = [
-  "function getReserves() view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast)",
+// X Layer's only real DEX (QuickSwap) runs Algebra V3 concentrated-liquidity
+// pools, not Uniswap-V2-shaped pairs — there's no getReserves()/constant
+// product here. `liquidity()` is the pool's active in-range concentrated
+// liquidity (informative on its own, but not a token amount); the actual
+// token reserves a V2 pair would have reported are approximated honestly by
+// each token's raw ERC20 balance held by the pool contract instead.
+export const ALGEBRA_POOL_ABI = [
+  "function liquidity() view returns (uint128)",
   "function token0() view returns (address)",
   "function token1() view returns (address)",
 ];

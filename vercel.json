@@ -2,6 +2,7 @@
   "outputDirectory": "web/dist",
   "rewrites": [
     { "source": "/check-risk", "destination": "/api" },
+    { "source": "/mcp", "destination": "/api/mcp" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "regions": ["sin1"]

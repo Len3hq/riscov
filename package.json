@@ -18,13 +18,15 @@
     "read-ledger": "tsx src/readLedger.ts",
     "demo": "tsx src/demo.ts",
     "mcp:server": "tsx src/mcp/server.ts",
+    "mcp:http-server": "tsx src/mcp/httpServer.ts",
     "mcp:test-client": "tsx src/mcp/testClient.ts",
     "paid:server": "tsx src/paidServer.ts",
     "paid:client": "tsx src/paidClient.ts",
     "register:erc8004:mainnet": "hardhat run scripts/registerErc8004.cts --network xlayerMainnet",
-    "vercel-build": "esbuild src/vercelEntry.ts --bundle --platform=node --format=esm --packages=external --outfile=api/index.mjs && npm --prefix web install && npm --prefix web run build"
+    "vercel-build": "esbuild src/vercelEntry.ts --bundle --platform=node --format=esm --packages=external --outfile=api/index.mjs && esbuild src/mcpVercelEntry.ts --bundle --platform=node --format=esm --packages=external --outfile=api/mcp.mjs && npm --prefix web install && npm --prefix web run build"
   },
   "dependencies": {
+    "@modelcontextprotocol/node": "^2.0.0",
     "@modelcontextprotocol/sdk": "^1.30.0",
     "@modelcontextprotocol/server": "^2.0.0",
     "@okxweb3/x402-core": "^0.1.0",

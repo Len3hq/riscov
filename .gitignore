@@ -9,3 +9,4 @@ typechain-types/
 .vercel
 .env*
 api/index.mjs
+api/mcp.mjs

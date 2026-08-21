@@ -5,7 +5,8 @@ const scripts: { cmd: string; does: string }[] = [
   { cmd: 'npm run check', does: 'Run the Watcher once against a single asset (CLI).' },
   { cmd: 'npm run watch', does: 'Run the Watcher on a timer for all registered assets.' },
   { cmd: 'npm run demo', does: "Scripted end-to-end demo: agent reasons, rating updates, consumer's limits update." },
-  { cmd: 'npm run mcp:server', does: 'Start the MCP server (see Connect via MCP).' },
+  { cmd: 'npm run mcp:server', does: 'Start the MCP server over stdio (see Connect via MCP).' },
+  { cmd: 'npm run mcp:http-server', does: 'Start the MCP server over streamable HTTP locally — hosted for real at riscov.vercel.app/mcp.' },
   { cmd: 'npm run paid:server', does: 'Run POST /check-risk locally, gated by x402.' },
   { cmd: 'npm run paid:client', does: 'Call the paid endpoint as a throwaway paying agent.' },
   { cmd: 'npm run deploy:testnet / :mainnet', does: 'Deploy RiscovLedger to X Layer.' },
@@ -46,6 +47,7 @@ const envGroups: { group: string; vars: { name: string; note: string }[] }[] = [
   {
     group: 'x402 / MCP marketplace',
     vars: [
+      { name: 'MCP_SERVER_PORT', note: 'local mcp:http-server binding, unused on Vercel (default 4022)' },
       { name: 'OKX_API_KEY / OKX_SECRET_KEY / OKX_PASSPHRASE', note: 'from the OKX Developer Portal' },
       { name: 'X402_PAY_TO_ADDRESS / X402_PAY_TO_PRIVATE_KEY', note: 'wallet that receives payment' },
       { name: 'X402_NETWORK', note: 'CAIP-2 id — eip155:196 mainnet or eip155:1952 testnet; independent of XLAYER_NETWORK, decide deliberately before it takes real payments' },

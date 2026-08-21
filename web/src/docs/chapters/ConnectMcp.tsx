@@ -7,12 +7,17 @@ export function ConnectMcp() {
     <>
       <Section title="Connect via MCP">
         <P>
-          <code className="hash">src/mcp/server.ts</code> exposes riscov as a single MCP tool,{' '}
-          <code className="hash">checkAssetRisk</code>, served over stdio. This is the free, direct
-          integration path — any MCP-speaking agent framework can spawn it and call the tool with no
-          payment involved. The paid HTTP equivalent is <a href="/docs/x402">/check-risk over x402</a>.
+          riscov exposes a single MCP tool, <code className="hash">checkAssetRisk</code>, free and
+          direct — no payment involved. The paid HTTP equivalent is{' '}
+          <a href="/docs/x402">/check-risk over x402</a>.
         </P>
-        <CodeBlock label="run it" code={`npm run mcp:server`} />
+        <P>
+          It's served two ways from the same tool definition (<code className="hash">src/mcp/tool.ts</code>):
+          a hosted streamable-HTTP endpoint anyone can call with no setup, and a stdio transport for
+          local dev.
+        </P>
+        <CodeBlock label="hosted — no cloning, no install" code={`https://riscov.vercel.app/mcp`} />
+        <CodeBlock label="local dev — stdio" code={`npm run mcp:server`} />
       </Section>
 
       <SubSection title="Tool contract">
@@ -37,11 +42,23 @@ output: {
 
       <SubSection title="Wiring it into an agent config">
         <P>
-          Point any MCP client at the server over stdio, the same way you'd add a filesystem or
-          browser MCP server:
+          Point any MCP client at the hosted URL — the same way you'd add a remote filesystem or
+          browser MCP server, and the reason "any agent can call it" is actually true now: no clone,
+          no install, no local process to spawn.
         </P>
         <CodeBlock
-          label="mcpServers config"
+          label="mcpServers config — hosted"
+          code={`{
+  "mcpServers": {
+    "riscov": {
+      "url": "https://riscov.vercel.app/mcp"
+    }
+  }
+}`}
+        />
+        <P>For local dev against a checkout instead, spawn it over stdio:</P>
+        <CodeBlock
+          label="mcpServers config — local stdio"
           code={`{
   "mcpServers": {
     "riscov": {
@@ -54,11 +71,13 @@ output: {
         />
         <UL>
           <li>
-            Requires <code className="hash">OPENAI_API_KEY</code> set — the Watcher's reasoning loop
-            runs on every call, not a cached lookup.
+            The hosted endpoint needs no client-side credentials — <code className="hash">OPENAI_API_KEY</code>{' '}
+            and everything else the Watcher's reasoning loop needs lives server-side on the deployment.
+            Running your own copy (stdio or <code className="hash">npm run mcp:http-server</code>) does
+            require it set locally.
           </li>
           <li>
-            Every call is logged locally the same way a scheduled watch is, under{' '}
+            Every call is logged server-side the same way a scheduled watch is, under{' '}
             <code className="hash">logs/</code>.
           </li>
         </UL>

@@ -19,7 +19,7 @@ async function main() {
   const result = await runWatcher({ asset });
   printResult(result);
   const filepath = logResult(result);
-  console.log(`Logged to ${filepath}`);
+  console.log(filepath ? `Logged to ${filepath}` : "Logging skipped (no writable filesystem)");
 
   if (submit) {
     console.log(`\nSubmitting rating to RiscovLedger on-chain...`);
