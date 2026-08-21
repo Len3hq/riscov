@@ -1,5 +1,5 @@
 {
-  "_comment": "Registry of assets the Watcher can check. Fill in real addresses as they're deployed/found on X Layer (network selected by XLAYER_NETWORK). Any field left null means that tool will honestly report 'not configured' rather than fabricate a number.",
+  "_comment": "Registry of assets the Watcher can check. Fill in real addresses as they're deployed/found on X Layer (network selected by XLAYER_NETWORK). Any field left null means that tool will honestly report 'not configured' rather than fabricate a number. pairAddress is null everywhere: X Layer's only real DEX (QuickSwap) deployed V3 Algebra pools on mainnet, not the Uniswap-V2-shaped pair (getReserves/token0/token1) getLiquidity.ts expects, so no real value exists to put here yet.",
   "assets": {
     "BTC": {
       "displayName": "BTC (Chainlink BTC/USD reference feed, X Layer mainnet)",
@@ -10,11 +10,59 @@
       "launchDate": null
     },
     "OKB": {
-      "displayName": "OKB (Chainlink OKB/USD reference feed, X Layer mainnet)",
-      "tokenAddress": null,
+      "displayName": "OKB (native gas token; tokenAddress is WOKB, its wrapped ERC-20 form)",
+      "tokenAddress": "0xe538905cf8410324e03A5A23C1c177a474D59b2b",
       "pairAddress": null,
       "porFeedAddress": null,
       "priceFeedAddress": "0x4Ff345b18a2bF894F8627F41501FBf30d5C5e7BE",
+      "launchDate": null
+    },
+    "ETH": {
+      "displayName": "ETH (tokenAddress is WETH, its wrapped ERC-20 form on X Layer)",
+      "tokenAddress": "0x5A77f1443D16ee5761d310e38b62f77f726bC71c",
+      "pairAddress": null,
+      "porFeedAddress": null,
+      "priceFeedAddress": "0x8b85b50535551F8E8cDAF78dA235b5Cf1005907b",
+      "launchDate": null
+    },
+    "USDC": {
+      "displayName": "USDC (native issuance on X Layer)",
+      "tokenAddress": "0x74b7F16337b8972027F6196A17a631aC6dE26d22",
+      "pairAddress": null,
+      "porFeedAddress": null,
+      "priceFeedAddress": "0xB8a08c178D96C315FbFB5661ABD208477391BC40",
+      "launchDate": null
+    },
+    "USDT0": {
+      "displayName": "USDT0 (omnichain USDT on X Layer)",
+      "tokenAddress": "0x779Ded0c9e1022225f8E0630b35a9b54bE713736",
+      "pairAddress": null,
+      "porFeedAddress": null,
+      "priceFeedAddress": "0x673b428Fd1df93a6F77fA7ea1F8eeD8A4Ff36b9f",
+      "launchDate": null
+    },
+    "XBTC": {
+      "displayName": "xBTC — OKX Wrapped BTC, custodially 1:1 backed",
+      "tokenAddress": "0xb7c00000bcdeef966b20b3d884b98e64d2b06b4f",
+      "pairAddress": null,
+      "porFeedAddress": "0x38b93c5b47bD270EeaCeA2901f0240CDe24942E2",
+      "priceFeedAddress": "0x4D6f6488a2B3a5f7b088f276887f608a1e9805c4",
+      "launchDate": null
+    },
+    "XETH": {
+      "displayName": "xETH — OKX Wrapped ETH, custodially 1:1 backed",
+      "tokenAddress": "0xE7B000003A45145decf8a28FC755aD5eC5EA025A",
+      "pairAddress": null,
+      "porFeedAddress": "0x4A045C9F2420DBd652c50CE578c8e6EBc13F8b9F",
+      "priceFeedAddress": "0x8b85b50535551F8E8cDAF78dA235b5Cf1005907b",
+      "launchDate": null
+    },
+    "XSOL": {
+      "displayName": "xSOL — OKX Wrapped SOL, custodially 1:1 backed",
+      "tokenAddress": "0x505000008de8748dbd4422ff4687a4fc9beba15b",
+      "pairAddress": null,
+      "porFeedAddress": "0x2EcFa14107ebD99049F05878bE4E1d2D180761EE",
+      "priceFeedAddress": "0xF959E1B5cA535C28aD24F7f672Bf1A93900810cF",
       "launchDate": null
     }
   }
